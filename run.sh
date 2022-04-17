@@ -1,0 +1,1 @@
+java -jar -DDB_HOST=localhost -DDB_PORT=5432 -DDB_NAME=terceira_fase -DDB_USER=postgres -DDB_PASSWORD=admin ./target/br-senac-terceira-fase-alocacao-0.0.1-SNAPSHOT.jar
