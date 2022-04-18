@@ -24,16 +24,17 @@ public class ProfessorController {
         private ProfessorRepository professorRepository;
 
         @PostMapping("/")
-        public ResponseEntity<ProfessorRepresentation.Details> create(@Valid @RequestBody ProfessorRepresentation.CreateOrUpdate create) {
+        public ResponseEntity<ProfessorRepresentation.Details>
+        create(@Valid @RequestBody ProfessorRepresentation.CreateOrUpdate create) {
                 Professor professor = Professor.builder()
                         .nome(create.getNome())
-                        .sexo(create.getSexo())
                         .sexo(create.getSexo())
                         .dataNascimento(create.getDataNascimento())
                         .titulacao(create.getTitulacao())
                         .build();
 
-                return ResponseEntity.status(201)
+                return ResponseEntity
+                        .status(201)
                         .body(ProfessorRepresentation.Details.from(this.professorRepository.save(professor)));
         }
 

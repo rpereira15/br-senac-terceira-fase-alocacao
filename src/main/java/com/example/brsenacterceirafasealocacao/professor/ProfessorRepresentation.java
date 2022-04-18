@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +17,14 @@ public interface ProfessorRepresentation {
     @Builder
     @AllArgsConstructor
     class CreateOrUpdate {
+
+        @NotEmpty(message = "O campo nome, não pode ser vazio")
+        @NotNull(message = "O campo nome, não pode ser null")
         private String nome;
         private Date dataNascimento;
         private String sexo;
         private String titulacao;
+
     }
 
 
