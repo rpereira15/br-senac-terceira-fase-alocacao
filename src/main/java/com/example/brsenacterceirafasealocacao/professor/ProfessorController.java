@@ -45,16 +45,15 @@ public class ProfessorController {
                 Professor professor = this.professorRepository.findOne(QProfessor.professor.id.eq(idProfessor))
                         .orElseThrow(() -> new NotFoundException("Professor não encontrado"));
 
-                professor.toBuilder()
+               Professor prof2 = professor.toBuilder()
                         .nome(update.getNome())
-                        .sexo(update.getSexo())
                         .sexo(update.getSexo())
                         .dataNascimento(update.getDataNascimento())
                         .titulacao(update.getTitulacao())
                         .build();
 
                 return ResponseEntity.status(200)
-                        .body(ProfessorRepresentation.Details.from(this.professorRepository.save(professor)));
+                        .body(ProfessorRepresentation.Details.from(this.professorRepository.save(prof2)));
         }
 
         @GetMapping("/{idProfessor}")
