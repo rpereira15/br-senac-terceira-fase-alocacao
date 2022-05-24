@@ -88,8 +88,7 @@ public class ProfessorController {
                 return ResponseEntity.ok(paginacao);
         }
 
-        @DeleteMapping
-        @RequestMapping("/{idProfessor}")
+        @DeleteMapping("/{idProfessor}")
         public ResponseEntity delete(@PathVariable Long idProfessor) {
                 Professor professor = this.professorRepository.findOne(QProfessor.professor.id.eq(idProfessor))
                         .orElseThrow(() -> new NotFoundException("Professor não encontrado"));
