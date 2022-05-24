@@ -21,11 +21,13 @@ import java.util.Objects;
 @AllArgsConstructor
 @CrossOrigin("*")
 public class ProfessorController {
+
         private ProfessorRepository professorRepository;
 
         @PostMapping("/")
         public ResponseEntity<ProfessorRepresentation.Details>
         create(@Valid @RequestBody ProfessorRepresentation.CreateOrUpdate create) {
+
                 Professor professor = Professor.builder()
                         .nome(create.getNome())
                         .sexo(create.getSexo())
@@ -84,5 +86,16 @@ public class ProfessorController {
                         .conteudo(ProfessorRepresentation.SimpleList.from(listaProduto.getContent()))
                         .build();
                 return ResponseEntity.ok(paginacao);
+        }
+
+        @DeleteMapping
+        @RequestMapping("/{idProfessor}")
+        public ResponseEntity delete(@PathVariable Long idProfessor) {
+                Professor professor = this.professorRepository.findOne(QProfessor.professor.id.eq(idProfessor))
+                        .orElseThrow(() -> new NotFoundException("Professor não encontrado"));
+
+                this.professorRepository.delete(professor);
+
+                return ResponseEntity.noContent().build();
         }
 }

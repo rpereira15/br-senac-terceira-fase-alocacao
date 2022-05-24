@@ -21,6 +21,7 @@ public interface ProfessorRepresentation {
         @NotEmpty(message = "O campo nome, não pode ser vazio")
         @NotNull(message = "O campo nome, não pode ser null")
         private String nome;
+
         private Date dataNascimento;
         private String sexo;
         private String titulacao;
@@ -42,10 +43,11 @@ public interface ProfessorRepresentation {
             return Details.builder()
                     .id(professor.getId())
                     .nome(professor.getNome())
-                    .dataNascimento(professor.getDataNascimento())
                     .sexo(professor.getSexo())
                     .titulacao(professor.getTitulacao())
+                    .dataNascimento(professor.getDataNascimento())
                     .build();
+
         }
     }
 
